@@ -1,11 +1,37 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './login.css'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import LottieAnimation from './loginAnimation.json'
 import Lottie from 'lottie-react';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import { toast } from 'react-toastify';
 
 
 const Login = () => {
+   const { user, signIn, loginWithGoogle, loading } = useContext(AuthContext)
+   const navigate = useNavigate();
+
+  const handleLogin =(e)=>{
+    e.preventDefault();
+    console.log('clicked')
+
+    const form = e.target;
+    const formData = new FormData(form)
+    const convertedData = Object.fromEntries(formData.entries())
+
+    console.log(convertedData);
+    const {email,password} = convertedData
+
+    signIn(email,password)
+    .then(()=>{
+      toast.success("User logged in successfully");
+      navigate('/')
+    }).catch((error)=>{
+      toast.error('Something was wrong. Try again letter');
+      console.log(error.massage)
+    })
+
+  }
   return (
     <div className='flex flex-col md:flex-row justify-center items-center gap-25'>
       <div className='w-full md:w-1/3'>
@@ -13,7 +39,7 @@ const Login = () => {
       </div>
       <div className="container">
       <div className="heading">Sign In</div>
-      <form action="" className="form">
+      <form onSubmit={handleLogin} className="form">
         <input
           required
           className="input"
