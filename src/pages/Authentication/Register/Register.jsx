@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "../Login/login.css";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import registerAnimation from "./registerAnimation.json";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
@@ -11,6 +11,7 @@ import Loader from "../../../Component/Loader/Loader";
 const Register = () => {
   const { user, createUser, loginWithGoogle, updateUser, setUser, loading } =
     useContext(AuthContext);
+    const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ const Register = () => {
 
     console.log(convertData);
     const { name, email, photo, password } = convertData;
+    console.log(name);
 
     createUser(email, password)
       .then((result) => {
@@ -33,13 +35,16 @@ const Register = () => {
           })
           .catch((error) => {
             console.log(error);
+            toast.error('Sorry!! Something was wrong.Try again');
           });
 
         toast.success('userCreated successfully');
-        console.log('user created successfully')
+        console.log('user created successfully');
+        navigate('/auth/login');
       })
       .catch((error) => {
         console.log("something is wrong try again");
+        toast.error('Sorry!! Something was wrong.Try again');
       });
   };
 
@@ -50,6 +55,8 @@ const Register = () => {
     loginWithGoogle()
       .then(() => {
         console.log("login successfully");
+        toast.success('userCreated successfully');
+        navigate('/')
       })
       .catch((error) => {
         console.log("something is wrong");
@@ -72,7 +79,7 @@ const Register = () => {
             required
             className="input"
             type="text"
-            name="Name"
+            name="name"
             id="email"
             placeholder="Name"
           />

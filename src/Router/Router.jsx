@@ -9,6 +9,7 @@ import AddPackages from "../pages/AddPackages/AddPackages";
 import ManagePackages from "../pages/ManagePackages/ManagePackages";
 import Login from "../pages/Authentication/Login/Login";
 import Register from "../pages/Authentication/Register/Register";
+import PrivetRoute from "../Component/PrivetRoute/PrivetRoute";
 
 
 
@@ -28,7 +29,7 @@ export const Router = createBrowserRouter([
             },
             {
                 path: '/my-bookings',
-                Component: MyBooking
+                element: <PrivetRoute><MyBooking></MyBooking></PrivetRoute>
             },
             {
                 path: '/about-us',
