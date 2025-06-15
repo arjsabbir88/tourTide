@@ -25,7 +25,8 @@ export const Router = createBrowserRouter([
             },
             {
                 path: '/all-packages',
-                Component: AllPackages
+                Component: AllPackages,
+                loader: ()=> fetch('http://localhost:3000/all-packages');
             },
             {
                 path: '/my-bookings',

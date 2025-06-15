@@ -1,13 +1,26 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import axios from 'axios';
+import Loader from '../../Component/Loader/Loader';
+import { toast } from 'react-toastify';
 
 const AddPackages = () => {
 
-  const {user} = useContext(AuthContext);
+  const {user,loading} = useContext(AuthContext);
+   if(loading){
+    return <Loader></Loader>
+  }
+  if(!user){
+    return <Loader></Loader>
+  }
 
-  const {displayName,email,photoURL} = user
+  // const {displayName,email,photoURL} = user
 
-  console.log(user)
+    const displayName = user?.displayName;
+    const email = user?.email;
+    const photoURL = user?.photoURL
+
+  console.log(displayName,email,photoURL)
 
 
   // function for handleFrom data
@@ -21,8 +34,34 @@ const AddPackages = () => {
     const convertedData = Object.fromEntries(fromData.entries());
 
     console.log(convertedData);
+
+    axios.post('http://localhost:3000/add-tour-packages',convertedData)
+    .then((result)=>{
+      console.log(result.data)
+
+      if(result.data.insertedId){
+        toast.success("Your tour packages added successfully");
+        from.reset();
+      }
+    })
+    .catch((error)=>{
+      toast.error("Something was wrong!! Try again letter");
+    })
+
+
+    // fetch('http://localhost:3000/add-tour-packages',{
+    //   method: 'POST',
+    //   headers: {
+    //     "Content-type": "application/json"
+    //   },
+    //   body: JSON.stringify(convertedData)
+    // })
+    // .then(res =>res.json())
+    // .then(data=>console.log(data))
+    // .catch(error => console.log(error))
   }
 
+ 
 
   return (
        <div className="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-lg mt-10">
