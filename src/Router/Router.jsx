@@ -11,6 +11,7 @@ import Login from "../pages/Authentication/Login/Login";
 import Register from "../pages/Authentication/Register/Register";
 import PrivetRoute from "../Component/PrivetRoute/PrivetRoute";
 import Loader from "../Component/Loader/Loader";
+import HomeCardDetails from "../pages/HomeCardDetails/HomeCardDetails";
 
 
 
@@ -25,6 +26,11 @@ export const Router = createBrowserRouter([
                 Component: Home,
                 loader: ()=> fetch('http://localhost:3000/tour-card-data'),
                 hydrateFallbackElement: <Loader></Loader>
+            },
+            {
+                path: '/package/details/:id',
+                element:<PrivetRoute><HomeCardDetails></HomeCardDetails></PrivetRoute> ,
+                loader: ({params}) => fetch(`http://localhost:3000/tour-card-data/details/${params.id}`)
             },
             {
                 path: '/all-packages',

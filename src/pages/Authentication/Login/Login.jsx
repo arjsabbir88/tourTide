@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./login.css";
 import { Link, useNavigate } from "react-router";
 import LottieAnimation from "./loginAnimation.json";
@@ -10,6 +10,17 @@ import Loader from "../../../Component/Loader/Loader";
 const Login = () => {
   const { user, signIn, loginWithGoogle, loading } = useContext(AuthContext);
   const navigate = useNavigate();
+
+
+//  if(user){
+//     navigate('/')
+//   }
+  
+useEffect(()=>{
+  if(user){
+    navigate('/')
+  }
+},[user,navigate])
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -45,6 +56,9 @@ const Login = () => {
         console.log("something is wrong");
       });
   };
+
+
+   
 
   if(loading){
     return <Loader></Loader>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "../Login/login.css";
 import { Link, useNavigate } from "react-router";
 import Lottie from "lottie-react";
@@ -12,6 +12,12 @@ const Register = () => {
   const { user, createUser, loginWithGoogle, updateUser, setUser, loading } =
     useContext(AuthContext);
     const navigate = useNavigate();
+
+    useEffect(()=>{
+      if(user){
+        navigate('/')
+      }
+    },[user,navigate])
 
   const handleRegister = (e) => {
     e.preventDefault();

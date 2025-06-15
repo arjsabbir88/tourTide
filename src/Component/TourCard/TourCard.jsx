@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const TourCard = ({ tourCard }) => {
-    console.log(tourCard)
+    // console.log(tourCard)
 
-    const {tourName,photo,guidePhoto,guideName,duration,date,price,email} = tourCard;
+    const {_id,tourName,photo,guidePhoto,guideName,duration,date,price,email} = tourCard;
   return (
     <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-2xl transition duration-300">
       <img
@@ -33,9 +34,9 @@ const TourCard = ({ tourCard }) => {
           <p><span className="font-semibold">Price:</span> ${price}</p>
         </div>
 
-        <button className="w-full hover:bg-[#00224D] font-bold hover:text-white py-2 rounded-md bg-[#FF204E] transition hover:cursor-pointer">
+        <Link to={`/package/details/${_id}`} className="w-full hover:bg-[#00224D] font-bold hover:text-white py-2 px-4 rounded-md bg-[#FF204E] transition hover:cursor-pointer">
           View Details
-        </button>
+        </Link>
       </div>
     </div>
   );

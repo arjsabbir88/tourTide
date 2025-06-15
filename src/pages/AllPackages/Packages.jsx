@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Packages = ({packageData}) => {
-    console.log(packageData)
+    // console.log(packageData)
 
     const {tourName,price,photo,guidePhoto,guideName,email,duration,details,destination,departureLocation,date,contact} = packageData
 

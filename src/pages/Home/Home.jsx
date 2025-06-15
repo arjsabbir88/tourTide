@@ -6,7 +6,7 @@ import TourCard from '../../Component/TourCard/TourCard';
 const Home = () => {
 
   const tourCardData = useLoaderData();
-  console.log(tourCardData);
+  // console.log(tourCardData);
 
   return (
     <div className='my-5'>

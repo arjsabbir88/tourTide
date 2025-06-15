@@ -4,11 +4,17 @@ import Banner from "../../Component/Banner/Banner";
 import Packages from "./Packages";
 import Loader from "../../Component/Loader/Loader";
 
+
 const AllPackages = () => {
   const allPackages = useLoaderData();
+  const navigation = useNavigation()
 
   if (!allPackages || allPackages.length === 0) {
     return <Loader />;
+  }
+
+  if(navigation.state ==='loading'){
+    return <Loader></Loader>
   }
 
   return (
