@@ -7,13 +7,20 @@ import Loader from "../Loader/Loader";
 
 const NavBar = () => {
   const { user,logOut,loading } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
+
+
+ 
+
   const [isDropDownOpen, setDropDownOpen] = useState();
 
   const toggleDropdown =()=>{
     setDropDownOpen(!isDropDownOpen)
   }
 
+  // if(!user || loading){
+  //   return <Loader></Loader>
+  // }
 
   const handleLogout =()=>{
     console.log('clicked')
@@ -29,6 +36,8 @@ const NavBar = () => {
   if(loading){
     return <Loader></Loader>
   }
+ 
+
 
   const authBtns = <>
   {user ? (

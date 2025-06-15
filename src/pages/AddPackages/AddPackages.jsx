@@ -20,7 +20,7 @@ const AddPackages = () => {
     const email = user?.email;
     const photoURL = user?.photoURL
 
-  console.log(displayName,email,photoURL)
+  // console.log(displayName,email,photoURL)
 
 
   // function for handleFrom data
@@ -33,11 +33,16 @@ const AddPackages = () => {
     const fromData = new FormData(from);
     const convertedData = Object.fromEntries(fromData.entries());
 
-    console.log(convertedData);
+    const currentDate = new Date();
+    
+    const updateData = {...convertedData, created_at: currentDate, bookingCount: { type: Number, default: 0 }}
+    console.log(updateData);
 
-    axios.post('http://localhost:3000/add-tour-packages',convertedData)
+    // console.log(convertedData);
+
+    axios.post('http://localhost:3000/add-tour-packages',updateData)
     .then((result)=>{
-      console.log(result.data)
+      // console.log(result.data)
 
       if(result.data.insertedId){
         toast.success("Your tour packages added successfully");
@@ -138,19 +143,19 @@ const AddPackages = () => {
             {/* guide name */}
             <div>
               <label className="block font-medium text-gray-600">Guide Name</label>
-              <input type="text" name='guideName' className="w-full input input-bordered mt-1 rounded-lg" defaultValue={displayName} readOnly />
+              <input type="text" name='guideName' className="w-full input input-bordered mt-1 rounded-lg" defaultValue={displayName} readOnly/>
             </div>
 
             {/* guide Email form firebase */}
             <div>
               <label className="block font-medium text-gray-600">Guide Email</label>
-              <input type="email" name='email' className="w-full input input-bordered mt-1 rounded-lg" defaultValue={email} readOnly />
+              <input type="email" name='email' className="w-full input input-bordered mt-1 rounded-lg" defaultValue={email} readOnly/>
             </div>
 
             {/* guidePhoto */}
             <div>
               <label className="block font-medium text-gray-600">Guide Photo URL</label>
-              <input type="text" name='guidePhoto' className="w-full input input-bordered mt-1 rounded-lg" defaultValue={photoURL} readOnly />
+              <input type="text" name='guidePhoto' className="w-full input input-bordered mt-1 rounded-lg" defaultValue={photoURL} readOnly/>
             </div>
           </div>
         </fieldset>

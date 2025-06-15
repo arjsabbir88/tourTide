@@ -7,15 +7,16 @@ import { initializeApp } from "firebase/app";
 
 
 
-// project-991801523448
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAmtPhc7_UFeAh0Hhy6NFjiWtYsP1UWIjM",
-  authDomain: "tourtide-8b581.firebaseapp.com",
-  projectId: "tourtide-8b581",
-  storageBucket: "tourtide-8b581.firebasestorage.app",
-  messagingSenderId: "991801523448",
-  appId: "1:991801523448:web:5fdceb7580d2ba4a6d8f0d"
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
 };
+
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);

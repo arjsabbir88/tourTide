@@ -10,6 +10,7 @@ import ManagePackages from "../pages/ManagePackages/ManagePackages";
 import Login from "../pages/Authentication/Login/Login";
 import Register from "../pages/Authentication/Register/Register";
 import PrivetRoute from "../Component/PrivetRoute/PrivetRoute";
+import Loader from "../Component/Loader/Loader";
 
 
 
@@ -21,12 +22,15 @@ export const Router = createBrowserRouter([
         children:[
             {
                 index: true,
-                Component: Home
+                Component: Home,
+                loader: ()=> fetch('http://localhost:3000/tour-card-data'),
+                hydrateFallbackElement: <Loader></Loader>
             },
             {
                 path: '/all-packages',
                 Component: AllPackages,
-                loader: ()=> fetch('http://localhost:3000/all-packages');
+                loader: ()=> fetch('http://localhost:3000/tour-card-data'),
+                HydrateFallback: <Loader></Loader>
             },
             {
                 path: '/my-bookings',
