@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useLoaderData } from "react-router";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import axios from "axios";
+import { toast } from "react-toastify";
 // import { useParams } from "react-router-dom";
 
 const HomeCardDetails = () => {
@@ -10,6 +12,7 @@ const HomeCardDetails = () => {
     const {bookingCount,contact,created_at,date,departureLocation,destination,details,duration,email,guideName,guidePhoto,photo,price,tourName,_id} = detailsData;
 
     const {user} = useContext(AuthContext);
+    const [bookingsData, setBookingsData] = useState([])
 
     // console.log(user)
 
@@ -19,6 +22,54 @@ const HomeCardDetails = () => {
   const [showModal, setShowModal] = useState(false);
 
 
+  const handleConfirmBooking=()=>{
+    const note = document.getElementById('note').value;
+    console.log(note)
+    console.log('clicked')
+
+    const bookingData = {
+      tour_id: _id,
+      tour_name: tourName,
+      guide_name: guideName,
+      guide_email: email,
+      buyer_email: firebaseEmail,
+      buyer_name: displayName,
+      booking_date: new Date(),
+      departure_date: date,
+      note: note,
+      status: "Pending"
+
+    }
+    // console.log(bookingData)
+
+
+    axios.post('http://localhost:3000/bookings',bookingData)
+    .then(result=>{
+      console.log(result);
+      if(result.data.insertedId){
+        toast.success("Thanks for Confirming your bookings");
+        document.getElementById('my_modal_5').close();
+        setBookingsData([...bookingsData,bookingData])
+      }
+    })
+    .catch(error => {
+      console.log(error)
+      toast.error("Sorry!! Don't det confirmed your booking");
+    })
+  }
+
+
+
+  useEffect(()=>{
+    fetch(`http://localhost:3000/bookings-collection/${_id}`)
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data)
+      setBookingsData(data)
+    })
+    .catch(error=>console.log(error));
+  },[_id])
+  console.log(bookingsData)
 
   return (
 
@@ -71,7 +122,7 @@ const HomeCardDetails = () => {
 
       {/* Booking Count */}
       <div className="text-sm text-gray-600">
-        ✅ Already Booked: {bookingCount.default || 0} people
+        ✅ Already Booked: {bookingsData.length || 0} people
       </div>
 
     
@@ -92,11 +143,11 @@ const HomeCardDetails = () => {
        <h2 className="text-xl font-bold">Book: {tourName}</h2>
 
       <p className="mb-4">Price: ${price}</p>
-      <textarea
+      <textarea id="note"
         placeholder="Special note (optional)"
         className="w-full p-2 border rounded mb-4"
       ></textarea>
-      <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+      <button onClick={handleConfirmBooking} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
         Confirm Booking
       </button>
     <div className="modal-action">
