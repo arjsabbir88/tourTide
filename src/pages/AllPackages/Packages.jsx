@@ -1,9 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router';
 
 const Packages = ({packageData}) => {
     // console.log(packageData)
 
-    const {tourName,price,photo,guidePhoto,guideName,email,duration,details,destination,departureLocation,date,contact} = packageData
+    const {tourName,price,photo,guidePhoto,guideName,email,duration,details,destination,departureLocation,date,contact,_id} = packageData;
+
 
   return (
     <div className="card bg-base-100 shadow-2xl/30">
@@ -25,7 +27,7 @@ const Packages = ({packageData}) => {
       <div className="badge badge-outline">To: {destination}</div>
     </div>
     <div className='my-5'>
-        <button className='w-full btn btn-soft btn-circle bg-[#FF204E] hover:text-white hover:bg-[#00224D] text-black'>See Details</button>
+        <Link to={`/all-packages/details/${_id}`} className='w-full btn btn-soft btn-circle bg-[#FF204E] hover:text-white hover:bg-[#00224D] text-black'>See Details</Link>
     </div>
   </div>
 </div>

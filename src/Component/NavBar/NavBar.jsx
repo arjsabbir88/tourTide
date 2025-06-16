@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
@@ -13,6 +13,18 @@ const NavBar = () => {
  
 
   const [isDropDownOpen, setDropDownOpen] = useState();
+  const [bookingData,setBookingData] = useState([]);
+// console.log(bookingData)
+
+  useEffect(()=>{
+    fetch('http://localhost:3000/all-packages')
+    .then(res=>res.json())
+    .then(data=>{
+      // console.log(data)
+      setBookingData(data)
+    })
+    .catch(error=>console.log(error))
+  },[])
 
   const toggleDropdown =()=>{
     setDropDownOpen(!isDropDownOpen)
@@ -23,7 +35,7 @@ const NavBar = () => {
   // }
 
   const handleLogout =()=>{
-    console.log('clicked')
+    // console.log('clicked')
     logOut()
     .then((result)=>{
       toast.success('User LoggedOut successfully');

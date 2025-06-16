@@ -21,15 +21,15 @@ const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log("clicked");
+    // console.log("clicked");
 
     const form = e.target;
     const formData = new FormData(form);
     const convertData = Object.fromEntries(formData.entries());
 
-    console.log(convertData);
+    // console.log(convertData);
     const { name, email, photo, password } = convertData;
-    console.log(name);
+    // console.log(name);
 
     createUser(email, password)
       .then((result) => {
@@ -40,16 +40,16 @@ const Register = () => {
             setUser({ ...user, displayName: name, photoURL: photo });
           })
           .catch((error) => {
-            console.log(error);
+            // console.log(error);
             toast.error('Sorry!! Something was wrong.Try again');
           });
 
         toast.success('userCreated successfully');
-        console.log('user created successfully');
+        // console.log('user created successfully');
         navigate('/auth/login');
       })
       .catch((error) => {
-        console.log("something is wrong try again");
+        // console.log("something is wrong try again");
         toast.error('Sorry!! Something was wrong.Try again');
       });
   };
@@ -57,10 +57,10 @@ const Register = () => {
   // handle login with google
 
   const handleLoginWithGoogle = () => {
-    console.log("clicked");
+    // console.log("clicked");
     loginWithGoogle()
       .then(() => {
-        console.log("login successfully");
+        // console.log("login successfully");
         toast.success('userCreated successfully');
         navigate('/')
       })

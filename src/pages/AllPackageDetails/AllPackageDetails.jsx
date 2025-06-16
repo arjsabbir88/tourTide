@@ -18,8 +18,7 @@ const HomeCardDetails = () => {
 
   const displayName = user?.displayName;
   const firebaseEmail = user?.email;
-  // console.log(displayName,firebaseEmail)
-  // const [showModal, setShowModal] = useState(false);
+//   console.log(displayName,firebaseEmail)
 
 
   const handleConfirmBooking=()=>{
@@ -46,7 +45,7 @@ const HomeCardDetails = () => {
 
     axios.post('http://localhost:3000/bookings',bookingData)
     .then(result=>{
-      console.log(result);
+    //   console.log(result);
       if(result.data.insertedId){
         toast.success("Thanks for Confirming your bookings");
         document.getElementById('my_modal_5').close();
@@ -54,7 +53,7 @@ const HomeCardDetails = () => {
       }
     })
     .catch(error => {
-      // console.log(error)
+    //   console.log(error)
       toast.error("Sorry!! Don't det confirmed your booking");
     })
   }
@@ -65,12 +64,12 @@ const HomeCardDetails = () => {
     fetch(`http://localhost:3000/bookings-collection/${_id}`)
     .then(res=>res.json())
     .then(data=>{
-      // console.log(data)
+    //   console.log(data)
       setBookingsData(data)
     })
     .catch(error=>console.log(error));
   },[_id])
-  // console.log(bookingsData)
+//   console.log(bookingsData)
 
   return (
 
@@ -156,10 +155,6 @@ const HomeCardDetails = () => {
   </div>
 </dialog>
     </>
-{/* {
-  showModal &&(
-  )
-} */}
 
     </div>
   );

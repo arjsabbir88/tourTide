@@ -12,6 +12,7 @@ import Register from "../pages/Authentication/Register/Register";
 import PrivetRoute from "../Component/PrivetRoute/PrivetRoute";
 import Loader from "../Component/Loader/Loader";
 import HomeCardDetails from "../pages/HomeCardDetails/HomeCardDetails";
+import AllPackageDetails from "../pages/AllPackageDetails/AllPackageDetails";
 
 
 
@@ -30,23 +31,30 @@ export const Router = createBrowserRouter([
             {
                 path: '/package/details/:id',
                 element:<PrivetRoute><HomeCardDetails></HomeCardDetails></PrivetRoute> ,
-                loader: ({params}) => fetch(`http://localhost:3000/tour-card-data/details/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:3000/tour-card-data/details/${params.id}`),
+                hydrateFallbackElement: <Loader/>
             },
             {
                 path: '/all-packages',
                 Component: AllPackages,
                 loader: ()=> fetch('http://localhost:3000/tour-card-data'),
-                HydrateFallback: <Loader></Loader>
+                hydrateFallbackElement: <Loader/>
+            },
+            {
+                path: '/all-packages/details/:id',
+                element: <PrivetRoute><AllPackageDetails/></PrivetRoute>,
+                loader: ({params}) => fetch(`http://localhost:3000/tour-card-data/details/${params.id}`),
+                hydrateFallbackElement: <Loader/>
             },
             {
                 path: '/my-bookings',
-                element: <PrivetRoute><MyBooking></MyBooking></PrivetRoute>
+                element: <PrivetRoute><MyBooking></MyBooking></PrivetRoute>,
             },
             {
                 path: '/about-us',
                 Component: AboutUs
             },
-            {
+            {   
                 path: '/add-package',
                 Component: AddPackages
             },

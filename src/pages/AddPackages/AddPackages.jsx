@@ -26,7 +26,7 @@ const AddPackages = () => {
   // function for handleFrom data
   const handleAddPackagesData = (e)=>{
     e.preventDefault();
-    console.log('clicked')
+    // console.log('clicked')
 
     // collected data form from
     const from = e.target;
@@ -36,7 +36,7 @@ const AddPackages = () => {
     const currentDate = new Date();
     
     const updateData = {...convertedData, created_at: currentDate, bookingCount: { type: Number, default: 0 }}
-    console.log(updateData);
+    // console.log(updateData);
 
     // console.log(convertedData);
 
