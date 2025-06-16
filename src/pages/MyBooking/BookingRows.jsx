@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const BookingRows = ({bookings,onStatusUpdate }) => {
 
@@ -18,6 +19,7 @@ const BookingRows = ({bookings,onStatusUpdate }) => {
             // console.log(result)
             if (result.data.modifiedCount > 0) {
                 onStatusUpdate(_id);
+                toast.success('Thanks for confirming your booking')
             }
         }).catch((err) => console.error(err));
     }

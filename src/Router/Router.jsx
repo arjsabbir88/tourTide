@@ -13,6 +13,7 @@ import PrivetRoute from "../Component/PrivetRoute/PrivetRoute";
 import Loader from "../Component/Loader/Loader";
 import HomeCardDetails from "../pages/HomeCardDetails/HomeCardDetails";
 import AllPackageDetails from "../pages/AllPackageDetails/AllPackageDetails";
+import UpdatePackage from "../pages/UpdatePackage/UpdatePackage";
 
 
 
@@ -37,7 +38,7 @@ export const Router = createBrowserRouter([
             {
                 path: '/all-packages',
                 Component: AllPackages,
-                loader: ()=> fetch('http://localhost:3000/tour-card-data'),
+                loader: ()=> fetch('http://localhost:3000/all-packages'),
                 hydrateFallbackElement: <Loader/>
             },
             {
@@ -60,7 +61,7 @@ export const Router = createBrowserRouter([
             },
             {
                 path: '/managePackages',
-                Component: ManagePackages
+                element: <PrivetRoute><ManagePackages></ManagePackages></PrivetRoute>
             },
             {
                 path: '/auth/login',
@@ -69,6 +70,12 @@ export const Router = createBrowserRouter([
             {
                 path: '/auth/register',
                 Component: Register
+            },
+            {
+                path: '/update-package/:id',
+                element: <PrivetRoute><UpdatePackage></UpdatePackage></PrivetRoute>,
+                loader: ({params}) => fetch(`http://localhost:3000/package/${params.id}`),
+                hydrateFallbackElement: <Loader></Loader>
             }
         ]
     }
