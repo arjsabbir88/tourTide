@@ -25,13 +25,13 @@ useEffect(()=>{
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("clicked");
+    // console.log("clicked");
 
     const form = e.target;
     const formData = new FormData(form);
     const convertedData = Object.fromEntries(formData.entries());
 
-    console.log(convertedData);
+    // console.log(convertedData);
     const { email, password } = convertedData;
 
     signIn(email, password)

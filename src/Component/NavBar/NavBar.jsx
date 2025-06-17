@@ -4,6 +4,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import Loader from "../Loader/Loader";
 import ThemeToggle from "../Theme/ThemeToggle";
+import logo from './logo.png'
 // import ''
 
 const NavBar = () => {
@@ -162,7 +163,8 @@ const NavBar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link to='/' className="btn btn-ghost text-xl">TOUR<span className="ml-[-5px] text-[#FF204E]">TIDE</span> <span><img className="max-w-20 ml-[-25px]" src={logo} alt="" /></span></Link>
+        
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="space-x-3 flex">

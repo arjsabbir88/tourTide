@@ -3,6 +3,7 @@ import { useLoaderData, useNavigation } from "react-router";
 import Banner from "../../Component/Banner/Banner";
 import Packages from "./Packages";
 import Loader from "../../Component/Loader/Loader";
+import { Fade } from "react-awesome-reveal";
 
 const AllPackages = () => {
   const allPackages = useLoaderData();
@@ -54,15 +55,18 @@ const AllPackages = () => {
           <h1 className="text-3xl font-bold text-[#00224D]">
             Choices your package
           </h1>
-          <p className="text-xs text-gray-500">
+          <Fade direction="up" delay={100} duration={1000}>
+            <p className="text-xs text-gray-500 animate__fadeInDown">
             Every great adventure becomes unforgettable when shared with the
             right people. That’s why we believe the best journeys are the ones
             taken together <br /> filled with laughter, new friendships, and
             lasting memories.
           </p>
+          </Fade>
         </div>
         {searchPackages.length!==0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mx-auto">
+          <Fade direction="down" delay={100} duration={1500} triggerOnce>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mx-auto">
             {searchPackages.map((packageData) => (
               <Packages
                 key={packageData._id}
@@ -70,8 +74,10 @@ const AllPackages = () => {
               ></Packages>
             ))}
           </div>
+          </Fade>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mx-auto">
+          <Fade delay={100} duration={1500} triggerOnce cascade>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mx-auto">
             {allPackages.map((packageData) => (
               <Packages
                 key={packageData._id}
@@ -79,6 +85,7 @@ const AllPackages = () => {
               ></Packages>
             ))}
           </div>
+          </Fade>
         )}
       </div>
     </>

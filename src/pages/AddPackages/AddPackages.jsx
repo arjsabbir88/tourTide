@@ -4,6 +4,7 @@ import axios from 'axios';
 import Loader from '../../Component/Loader/Loader';
 import { toast } from 'react-toastify';
 import ErrorPage from '../404-pages/ErrorPage';
+import Login from '../Authentication/Login/Login';
 
 const AddPackages = () => {
 
@@ -12,7 +13,7 @@ const AddPackages = () => {
     return <Loader></Loader>
   }
   if(!user){
-    return <ErrorPage></ErrorPage>
+    return <Login></Login>
   }
 
   // const {displayName,email,photoURL} = user
@@ -39,7 +40,7 @@ const AddPackages = () => {
     const currentDate = new Date();
 
     if(!token){
-      return <ErrorPage></ErrorPage>
+      return <Login></Login>
     }
     
     const updateData = {...convertedData, created_at: currentDate, bookingCount: 0 }

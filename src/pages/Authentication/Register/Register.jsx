@@ -31,6 +31,28 @@ const Register = () => {
     const { name, email, photo, password } = convertData;
     // console.log(name);
 
+        // console.log(name, email, photo, password)
+
+        const errors = [];
+
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasLowercase = /[a-z]/.test(password);
+
+        if (password.length < 6) {
+            errors.push("Pass is too short");
+        }
+
+        if (!hasUppercase) {
+            errors.push("Please Added at least one upper case");
+        }
+        if (!hasLowercase) {
+            errors.push("Please Added at least one lower case");
+        }
+        if (errors.length > 0) {
+            toast.error('Invalid Password. Please check requirements.');
+            return
+        }
+
     createUser(email, password)
       .then((result) => {
         const user = result.user;

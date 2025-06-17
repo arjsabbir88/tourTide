@@ -10,7 +10,7 @@ const ManagePackages = () => {
   const [manageData, setManageData] = useState([]);
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("access_token");
-  console.log(token);
+  // console.log(token);
   const navigate = useNavigate();
 
   if (!token) {
