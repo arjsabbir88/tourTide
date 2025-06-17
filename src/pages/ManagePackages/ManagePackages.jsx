@@ -3,6 +3,7 @@ import { Link, useLoaderData } from 'react-router'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import ManageRow from './ManageRow';
 import Loader from '../../Component/Loader/Loader';
+import axios from 'axios';
 
 const ManagePackages = () => {
 
@@ -11,14 +12,28 @@ const ManagePackages = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
-    fetch(`http://localhost:3000/all-packages/manage-package?email=${user?.email}`)
-    .then(res=>res.json())
-    .then(data=>{
-      // console.log(data)
-      setManageData(data)
+    // fetch(`http://localhost:3000/all-packages/manage-package?email=${user?.email}`)
+    // .then(res=>res.json())
+    // .then(data=>{
+    //   // console.log(data)
+    //   setManageData(data)
+    //   setLoading(false)
+    // })
+    // .catch(error=> console.log(error.message));
+
+
+    axios.get(`http://localhost:3000/all-packages/manage-package?email=${user?.email}`)
+    .then(res=>{
+
+      setManageData(res.data)
       setLoading(false)
-    })
-    .catch(error=> console.log(error.message));
+
+    }) .catch((err) => {
+
+      console.error(err);
+      setLoading(false);
+
+    });
   },[user?.email])
 
 

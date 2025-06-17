@@ -35,7 +35,7 @@ const AddPackages = () => {
 
     const currentDate = new Date();
     
-    const updateData = {...convertedData, created_at: currentDate, bookingCount: { type: Number, default: 0 }}
+    const updateData = {...convertedData, created_at: currentDate, bookingCount: 0 }
     // console.log(updateData);
 
     // console.log(convertedData);

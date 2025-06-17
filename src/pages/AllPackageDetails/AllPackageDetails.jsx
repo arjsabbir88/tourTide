@@ -5,24 +5,39 @@ import axios from "axios";
 import { toast } from "react-toastify";
 // import { useParams } from "react-router-dom";
 
-const HomeCardDetails = () => {
+const AllPackageDetails = () => {
+  const detailsData = useLoaderData();
+  // console.log(detailsData);
+  const {
+    contact,
+    date,
+    departureLocation,
+    destination,
+    details,
+    duration,
+    email,
+    guideName,
+    guidePhoto,
+    photo,
+    price,
+    tourName,
+    _id,
+    bookingCount,
+  } = detailsData;
 
-    const detailsData = useLoaderData();
-    // console.log(detailsData);
-    const {contact,date,departureLocation,destination,details,duration,email,guideName,guidePhoto,photo,price,tourName,_id} = detailsData;
+  const { user } = useContext(AuthContext);
+  const [bookingsData, setBookingsData] = useState([]);
+  const [bookingCountState, setBookingCountState] = useState(bookingCount || 0);
 
-    const {user} = useContext(AuthContext);
-    const [bookingsData, setBookingsData] = useState([])
-
-    // console.log(user)
+  // console.log(user)
 
   const displayName = user?.displayName;
   const firebaseEmail = user?.email;
-//   console.log(displayName,firebaseEmail)
+  // console.log(displayName,firebaseEmail)
+  // const [showModal, setShowModal] = useState(false);
 
-
-  const handleConfirmBooking=()=>{
-    const note = document.getElementById('note').value;
+  const handleConfirmBooking = () => {
+    const note = document.getElementById("note").value;
     // console.log(note)
     // console.log('clicked')
 
@@ -38,41 +53,52 @@ const HomeCardDetails = () => {
       booking_date: new Date(),
       departure_date: date,
       note: note,
-      status: "Pending"
-    }
+      status: "Pending",
+    };
     // console.log(bookingData)
 
+    axios
+      .post("http://localhost:3000/bookings", bookingData)
+      .then((result) => {
+        console.log(result);
+        if (result.data.insertedId) {
+          toast.success("Thanks for Confirming your bookings");
+          document.getElementById("my_modal_5").close();
+          setBookingsData([...bookingsData, bookingData]);
 
-    axios.post('http://localhost:3000/bookings',bookingData)
-    .then(result=>{
-    //   console.log(result);
-      if(result.data.insertedId){
-        toast.success("Thanks for Confirming your bookings");
-        document.getElementById('my_modal_5').close();
-        setBookingsData([...bookingsData,bookingData])
-      }
-    })
-    .catch(error => {
-    //   console.log(error)
-      toast.error("Sorry!! Don't det confirmed your booking");
-    })
-  }
+          // bookingCount
 
+          axios
+            .patch(`http://localhost:3000/packages/increment-booking/${_id}`)
+            .then((res) => {
+              console.log("booking count after update", res.data);
+              if (res.data.modifiedCount > 0) {
+                setBookingCountState((prev) => prev + 1);
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+      })
+      .catch((error) => {
+        // console.log(error)
+        toast.error("Sorry!! Don't det confirmed your booking");
+      });
+  };
 
-
-  useEffect(()=>{
+  useEffect(() => {
     fetch(`http://localhost:3000/bookings-collection/${_id}`)
-    .then(res=>res.json())
-    .then(data=>{
-    //   console.log(data)
-      setBookingsData(data)
-    })
-    .catch(error=>console.log(error));
-  },[_id])
-//   console.log(bookingsData)
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data)
+        setBookingsData(data);
+      })
+      .catch((error) => console.log(error));
+  }, [_id]);
+  // console.log(bookingsData)
 
   return (
-
     <div className="max-w-5xl mx-auto p-6 space-y-6">
       {/* Tour Image */}
       <img
@@ -89,21 +115,30 @@ const HomeCardDetails = () => {
       </div>
 
       {/* Guide Info */}
-      <div className="flex items-center gap-4 bg-gray-100 p-4 rounded-lg shadow">
-        <img
-          src={guidePhoto}
-          alt={guideName}
-          className="w-16 h-16 rounded-full border-2 border-blue-500"
-        />
-        <div>
-          <h3 className="font-semibold text-gray-800">{guideName}</h3>
-          <p className="text-gray-600 text-sm">📞 {contact}</p>
+      <div className="flex justify-between bg-gray-100 p-4 rounded-lg shadow">
+        <div className="flex items-center gap-4">
+          <img
+            src={guidePhoto}
+            alt={guideName}
+            className="w-16 h-16 rounded-full border-2 border-blue-500"
+          />
+          <div>
+            <h3 className="font-semibold text-gray-800">{guideName}</h3>
+            <p className="text-gray-600 text-sm">📞 {contact}</p>
+          </div>
+        </div>
+        <div className="flex items-center">
+          <p className="text-xl font-bold px-4">
+            Booking_Count : {bookingCountState}
+          </p>
         </div>
       </div>
 
       {/* Description */}
       <div>
-        <h2 className="text-xl font-semibold mb-2 text-gray-800">Package Details</h2>
+        <h2 className="text-xl font-semibold mb-2 text-gray-800">
+          Package Details
+        </h2>
         <p className="text-gray-700 leading-relaxed">{details}</p>
       </div>
 
@@ -125,39 +160,50 @@ const HomeCardDetails = () => {
         ✅ Already Booked: {bookingsData.length || 0} people
       </div>
 
-    
-      <button className="btn btn-soft bg-[#FF204E] hover:bg-[#00224D] hover:text-white px-4" onClick={()=>document.getElementById('my_modal_5').showModal()}>Book Now</button>
-
-  
-    <>
-<dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-  <div className="modal-box">
-      <form method="dialog" className="flex justify-end">
-        {/* if there is a button in form, it will close the modal */}
-        <button className="btn btn-soft bg-[#FF204E] hover:bg-[#00224D] hover:text-white">X</button>
-      </form>
-    <div className="mb-5">
-        <h1 className="text-2xl font-bold">{displayName}</h1>
-        <p className="text-xs mt-[-5px]">{firebaseEmail}</p>
-      </div>
-       <h2 className="text-xl font-bold">Book: {tourName}</h2>
-
-      <p className="mb-4">Price: ${price}</p>
-      <textarea id="note"
-        placeholder="Special note (optional)"
-        className="w-full p-2 border rounded mb-4"
-      ></textarea>
-      <button onClick={handleConfirmBooking} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-        Confirm Booking
+      <button
+        className="btn btn-soft bg-[#FF204E] hover:bg-[#00224D] hover:text-white px-4"
+        onClick={() => document.getElementById("my_modal_5").showModal()}
+      >
+        Book Now
       </button>
-    <div className="modal-action">
-    </div>
-  </div>
-</dialog>
-    </>
 
+      <>
+        <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box">
+            <form method="dialog" className="flex justify-end">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn btn-soft bg-[#FF204E] hover:bg-[#00224D] hover:text-white">
+                X
+              </button>
+            </form>
+            <div className="mb-5">
+              <h1 className="text-2xl font-bold">{displayName}</h1>
+              <p className="text-xs mt-[-5px]">{firebaseEmail}</p>
+            </div>
+            <h2 className="text-xl font-bold">Book: {tourName}</h2>
+
+            <p className="mb-4">Price: ${price}</p>
+            <textarea
+              id="note"
+              placeholder="Special note (optional)"
+              className="w-full p-2 border rounded mb-4"
+            ></textarea>
+            <button
+              onClick={handleConfirmBooking}
+              className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+            >
+              Confirm Booking
+            </button>
+            <div className="modal-action"></div>
+          </div>
+        </dialog>
+      </>
+      {/* {
+  showModal &&(
+  )
+} */}
     </div>
   );
 };
 
-export default HomeCardDetails;
+export default AllPackageDetails;
