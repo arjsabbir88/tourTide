@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import Loader from "../Loader/Loader";
+import ThemeToggle from "../Theme/ThemeToggle";
 // import ''
 
 const NavBar = () => {
@@ -170,6 +171,8 @@ const NavBar = () => {
       </div>
       <div className="navbar-end">
            <ul className="flex items-center relative">
+          <ThemeToggle></ThemeToggle>
+
       {user && (
         <div className="mx-3 relative">
           <div
