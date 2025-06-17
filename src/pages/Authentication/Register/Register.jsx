@@ -13,6 +13,12 @@ const Register = () => {
     useContext(AuthContext);
     const navigate = useNavigate();
 
+    
+    useEffect(()=>{
+        document.title="Register | TourTide";
+      },[])
+    
+
     useEffect(()=>{
       if(user){
         navigate('/')

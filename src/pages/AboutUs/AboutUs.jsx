@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Fade } from 'react-awesome-reveal'
 
 const AboutUs = () => {
+  useEffect(()=>{
+      document.title="About-Us | TourTide";
+    },[])
+  
   return (
     <div className="bg-[#f9f9f9] py-10 px-4 md:px-20">
   <h2 className="text-3xl font-bold text-center text-[#00224D] mb-4">About Us</h2>

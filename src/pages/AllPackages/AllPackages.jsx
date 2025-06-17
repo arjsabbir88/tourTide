@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData, useNavigation } from "react-router";
 import Banner from "../../Component/Banner/Banner";
 import Packages from "./Packages";
@@ -11,6 +11,10 @@ const AllPackages = () => {
   const [searchText, setSearchText] = useState("");
   const [searchPackages, setSearchPackages] = useState([]);
   // console.log(searchPackages);
+
+  useEffect(()=>{
+    document.title="All-packages | TourTide";
+  },[])
 
   if (!allPackages || allPackages.length === 0) {
     return <Loader />;

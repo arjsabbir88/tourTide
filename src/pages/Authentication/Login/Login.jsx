@@ -12,6 +12,11 @@ const Login = () => {
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || '/';
 
+  useEffect(()=>{
+      document.title="Login | TourTide";
+    },[])
+  
+
 
 //  if(user){
 //     navigate('/')

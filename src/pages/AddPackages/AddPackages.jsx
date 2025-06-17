@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import axios from 'axios';
 import Loader from '../../Component/Loader/Loader';
@@ -7,6 +7,11 @@ import ErrorPage from '../404-pages/ErrorPage';
 import Login from '../Authentication/Login/Login';
 
 const AddPackages = () => {
+
+  useEffect(()=>{
+      document.title="Add-packages | TourTide";
+    },[])
+  
 
   const {user,loading} = useContext(AuthContext);
    if(loading){

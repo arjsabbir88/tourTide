@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomePageBanner from "./HomeBanner";
 import { Link, useLoaderData } from "react-router";
 import TourCard from "../../Component/TourCard/TourCard";
@@ -8,6 +8,11 @@ import FlightRoutes from "../../Component/FlightDate/FlightRutes";
 import { Bounce, Fade, Slide } from "react-awesome-reveal";
 
 const Home = () => {
+
+  useEffect(()=>{
+    document.title = "Home | TourTide"
+  },[])
+
   const tourCardData = useLoaderData();
   // console.log(tourCardData);
 
@@ -43,7 +48,7 @@ const Home = () => {
           {tourCardData.map((tourCard) => (
             <TourCard key={tourCard._id} tourCard={tourCard}></TourCard>
           ))}
-          
+
         </div>
           </Fade>
         {/* </Slide> */}

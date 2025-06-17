@@ -25,6 +25,11 @@ const HomeCardDetails = () => {
     bookingCount,
   } = detailsData;
 
+  useEffect(()=>{
+      document.title="Package-details | TourTide";
+    },[])
+  
+
   const { user } = useContext(AuthContext);
   const [bookingsData, setBookingsData] = useState([]);
   const [bookingCountState, setBookingCountState] = useState(bookingCount || 0);

@@ -60,7 +60,7 @@ export const Router = createBrowserRouter([
           }
 
           const data = await response.json();
-          console.log('Fetched data:', data);
+          // console.log('Fetched data:', data);
           return data;
         },
         hydrateFallbackElement: <Loader />,

@@ -13,6 +13,11 @@ const ManagePackages = () => {
   // console.log(token);
   const navigate = useNavigate();
 
+  useEffect(()=>{
+      document.title="Manage-packages | TourTide";
+    },[])
+  
+
   if (!token) {
     return navigate("/error-404-page");
   }

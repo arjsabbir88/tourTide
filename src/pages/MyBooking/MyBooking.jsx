@@ -14,6 +14,11 @@ const MyBooking = () => {
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem('access_token');
 
+  useEffect(()=>{
+      document.title="My-bookings | TourTide";
+    },[])
+  
+
   if(!token){
     return <Login></Login>
   }

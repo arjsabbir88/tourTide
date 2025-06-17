@@ -29,6 +29,11 @@ const AllPackageDetails = () => {
   const [bookingsData, setBookingsData] = useState([]);
   const [bookingCountState, setBookingCountState] = useState(bookingCount || 0);
 
+  useEffect(()=>{
+      document.title="Packages-Details | TourTide";
+    },[])
+  
+
   // console.log(user)
 
   const displayName = user?.displayName;
