@@ -178,6 +178,10 @@ export const Router = createBrowserRouter([
           fetch(`http://localhost:3000/package/${params.id}`),
         hydrateFallbackElement: <Loader></Loader>,
       },
+      {
+        path: '/error-404-page',
+        Component: ErrorPage
+      }
     ],
   },
 ]);

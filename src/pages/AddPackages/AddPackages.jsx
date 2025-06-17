@@ -3,6 +3,7 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 import axios from 'axios';
 import Loader from '../../Component/Loader/Loader';
 import { toast } from 'react-toastify';
+import ErrorPage from '../404-pages/ErrorPage';
 
 const AddPackages = () => {
 
@@ -11,7 +12,7 @@ const AddPackages = () => {
     return <Loader></Loader>
   }
   if(!user){
-    return <Loader></Loader>
+    return <ErrorPage></ErrorPage>
   }
 
   // const {displayName,email,photoURL} = user
@@ -32,18 +33,23 @@ const AddPackages = () => {
     const from = e.target;
     const fromData = new FormData(from);
     const convertedData = Object.fromEntries(fromData.entries());
+    const token = localStorage.getItem('access_token');
+    console.log(token)
 
     const currentDate = new Date();
+
+    if(!token){
+      return <ErrorPage></ErrorPage>
+    }
     
     const updateData = {...convertedData, created_at: currentDate, bookingCount: 0 }
-    // console.log(updateData);
 
-    // console.log(convertedData);
-
-    axios.post('http://localhost:3000/add-tour-packages',updateData)
+    axios.post('http://localhost:3000/add-tour-packages',updateData,{
+      headers: {
+    authorization: `Bearer ${localStorage.getItem('access_token')}`
+  }
+    })
     .then((result)=>{
-      // console.log(result.data)
-
       if(result.data.insertedId){
         toast.success("Your tour packages added successfully");
         from.reset();
@@ -52,21 +58,7 @@ const AddPackages = () => {
     .catch((error)=>{
       toast.error("Something was wrong!! Try again letter");
     })
-
-
-    // fetch('http://localhost:3000/add-tour-packages',{
-    //   method: 'POST',
-    //   headers: {
-    //     "Content-type": "application/json"
-    //   },
-    //   body: JSON.stringify(convertedData)
-    // })
-    // .then(res =>res.json())
-    // .then(data=>console.log(data))
-    // .catch(error => console.log(error))
   }
-
- 
 
   return (
        <div className="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-lg mt-10">

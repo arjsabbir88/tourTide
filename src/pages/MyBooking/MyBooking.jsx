@@ -4,17 +4,27 @@ import Loader from "../../Component/Loader/Loader";
 import { toast } from "react-toastify";
 import BookingRows from "./BookingRows";
 import { Link } from "react-router";
+import ErrorPage from "../404-pages/ErrorPage";
 
 const MyBooking = () => {
   const { user } = useContext(AuthContext);
   const [myBookings, setMyBookings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem('access_token');
+
+  if(!token){
+    return <ErrorPage></ErrorPage>
+  }
   // console.log(myBookings)
 
   useEffect(() => {
     if (!user?.email) return <Loader></Loader>;
 
-    fetch(`http://localhost:3000/my-bookings?email=${user.email}`)
+    fetch(`http://localhost:3000/my-bookings?email=${user.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      },
+    })
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch bookings");
@@ -48,16 +58,21 @@ const MyBooking = () => {
       {myBookings.length === 0 ? (
         <div className="text-center font-semibold my-10">
           <h1 className="text-3xl text-[#00224D] font-bold">
-              Welcome to TourTide
-            </h1>
-            <p className="text-xs">
-              Your journey begins here – unforgettable adventures, handpicked
-              for every traveler.
-            </p>
-            <div className="my-30 text-red-500">
-              <h3>You have no tour bookings yet!</h3>
-              <Link to='/all-packages' className="btn btn-soft bg-[#FF204E] hover:bg-[#00224D] hover:text-white my-5">Go For Booking</Link>
-            </div>
+            Welcome to TourTide
+          </h1>
+          <p className="text-xs">
+            Your journey begins here – unforgettable adventures, handpicked for
+            every traveler.
+          </p>
+          <div className="my-30 text-red-500">
+            <h3>You have no tour bookings yet!</h3>
+            <Link
+              to="/all-packages"
+              className="btn btn-soft bg-[#FF204E] hover:bg-[#00224D] hover:text-white my-5"
+            >
+              Go For Booking
+            </Link>
+          </div>
         </div>
       ) : (
         <>
