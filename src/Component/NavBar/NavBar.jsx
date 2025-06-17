@@ -4,89 +4,85 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import Loader from "../Loader/Loader";
 import ThemeToggle from "../Theme/ThemeToggle";
-import logo from './logo.png'
+import logo from "./logo.png";
 // import ''
 
 const NavBar = () => {
-  const { user,logOut,loading } = useContext(AuthContext);
+  const { user, logOut, loading } = useContext(AuthContext);
   // console.log(user);
 
-
- 
-
   const [isDropDownOpen, setDropDownOpen] = useState();
-  const [bookingData,setBookingData] = useState([]);
-// console.log(bookingData)
+  const [bookingData, setBookingData] = useState([]);
+  // console.log(bookingData)
 
-  useEffect(()=>{
-    fetch('http://localhost:3000/all-packages')
-    .then(res=>res.json())
-    .then(data=>{
-      // console.log(data)
-      setBookingData(data)
-    })
-    .catch(error=>console.log(error))
-  },[])
+  useEffect(() => {
+    fetch("https://tour-tide-server.vercel.app/all-packages")
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data)
+        setBookingData(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
-  const toggleDropdown =()=>{
-    setDropDownOpen(!isDropDownOpen)
-  }
+  const toggleDropdown = () => {
+    setDropDownOpen(!isDropDownOpen);
+  };
 
   // if(!user || loading){
   //   return <Loader></Loader>
   // }
 
-  const handleLogout =()=>{
+  const handleLogout = () => {
     // console.log('clicked')
     logOut()
-    .then((result)=>{
-      toast.success('User LoggedOut successfully');
-    }).catch((error)=>{
-      toast.error('Something was wrong!! try again');
-    })
+      .then((result) => {
+        toast.success("User LoggedOut successfully");
+      })
+      .catch((error) => {
+        toast.error("Something was wrong!! try again");
+      });
+  };
 
+  if (loading) {
+    return <Loader></Loader>;
   }
 
-  if(loading){
-    return <Loader></Loader>
-  }
- 
-
-
-  const authBtns = <>
-  {user ? (
-          <Link
-            onClick={handleLogout}
-            to="/"
-            className="btn btn-soft  hover:bg-[#FF204E] rounded-xl hover:text-white"
-          >
-            LogOut
-          </Link>
-        ) : (
-          <Link
-            to="/auth/login"
-            className="btn btn-soft hover:bg-[#FF204E] rounded-xl hover:text-white"
-          >
-            Login
-          </Link>
-        )}
-        {user ? (
-          <Link
-            to="/auth/register"
-            className="hidden btn bg-[#FF204E] btn-soft rounded-xl ml-5 text-white hover:bg-[#A0153E]"
-          >
-            Register
-          </Link>
-        ) : (
-          <Link
-            to="/auth/register"
-            className="btn bg-[#FF204E] btn-soft rounded-xl ml-5 text-white hover:bg-[#A0153E]"
-          >
-            Register
-          </Link>
-        )}
-  </>
-
+  const authBtns = (
+    <>
+      {user ? (
+        <Link
+          onClick={handleLogout}
+          to="/"
+          className="btn btn-soft  hover:bg-[#FF204E] rounded-xl hover:text-white"
+        >
+          LogOut
+        </Link>
+      ) : (
+        <Link
+          to="/auth/login"
+          className="btn btn-soft hover:bg-[#FF204E] rounded-xl hover:text-white"
+        >
+          Login
+        </Link>
+      )}
+      {user ? (
+        <Link
+          to="/auth/register"
+          className="hidden btn bg-[#FF204E] btn-soft rounded-xl ml-5 text-white hover:bg-[#A0153E]"
+        >
+          Register
+        </Link>
+      ) : (
+        <Link
+          to="/auth/register"
+          className="btn bg-[#FF204E] btn-soft rounded-xl ml-5 text-white hover:bg-[#A0153E]"
+        >
+          Register
+        </Link>
+      )}
+    </>
+  );
 
   const links = (
     <>
@@ -131,7 +127,12 @@ const NavBar = () => {
           Manage Packages
         </li>
       </NavLink>
-      <button onClick={handleLogout} className="w-full px-2 hover:text-white hover:bg-[#FF204E] hover:rounded-[4px] text-start">LogOut</button>
+      <button
+        onClick={handleLogout}
+        className="w-full px-2 hover:text-white hover:bg-[#FF204E] hover:rounded-[4px] text-start"
+      >
+        LogOut
+      </button>
     </>
   );
 
@@ -163,57 +164,54 @@ const NavBar = () => {
             {links}
           </ul>
         </div>
-        <Link to='/' className="btn btn-ghost text-xl">TOUR<span className="ml-[-5px] text-[#FF204E]">TIDE</span> <span><img className="max-w-20 ml-[-25px]" src={logo} alt="" /></span></Link>
-        
+        <Link to="/" className="btn btn-ghost text-xl">
+          TOUR<span className="ml-[-5px] text-[#FF204E]">TIDE</span>{" "}
+          <span>
+            <img className="max-w-20 ml-[-25px]" src={logo} alt="" />
+          </span>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="space-x-3 flex">
-          {links}
-        </ul>
+        <ul className="space-x-3 flex">{links}</ul>
       </div>
       <div className="navbar-end">
-           <ul className="flex items-center relative">
+        <ul className="flex items-center relative">
           <ThemeToggle></ThemeToggle>
 
-      {user && (
-        <div className="mx-3 relative">
-          <div
-            className="avatar avatar-online w-10 rounded-full hover:cursor-pointer"
-            onClick={toggleDropdown}
-          >
-            <img className="rounded-full"
-              src={
-                user.photoURL
-                  ? user.photoURL
-                  : "https://cdn-icons-png.flaticon.com/128/1177/1177568.png"
-              }
-              alt="Profile"
-            />
-          </div>
+          {user && (
+            <div className="mx-3 relative">
+              <div
+                className="avatar avatar-online w-10 rounded-full hover:cursor-pointer"
+                onClick={toggleDropdown}
+              >
+                <img
+                  className="rounded-full"
+                  src={
+                    user.photoURL
+                      ? user.photoURL
+                      : "https://cdn-icons-png.flaticon.com/128/1177/1177568.png"
+                  }
+                  alt="Profile"
+                />
+              </div>
 
-          {/* Dropdown */}
-          {isDropDownOpen && (
-            <div className="absolute top-12 right-0 bg-white shadow-xl rounded-lg w-40 z-50">
-              <ul className="text-lg text-gray-700">
-                <div className="px-2 mb-4 text-center">
-                  <p>{user.displayName}</p>
-                  <p className="text-xs mt-[-8px]">{user.email}</p>
+              {/* Dropdown */}
+              {isDropDownOpen && (
+                <div className="absolute top-12 right-0 bg-white shadow-xl rounded-lg w-40 z-50">
+                  <ul className="text-lg text-gray-700">
+                    <div className="px-2 mb-4 text-center">
+                      <p>{user.displayName}</p>
+                      <p className="text-xs mt-[-8px]">{user.email}</p>
+                    </div>
+                    {dropDownLinks}
+                  </ul>
                 </div>
-                {
-                  dropDownLinks
-                }
-              </ul>
+              )}
             </div>
           )}
-        </div>
-      )}
-    </ul>
+        </ul>
 
-        {
-          user? '': (
-          authBtns
-        )
-        }
+        {user ? "" : authBtns}
       </div>
     </div>
   );

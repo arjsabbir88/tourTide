@@ -12,26 +12,28 @@ const MyBooking = () => {
   const { user } = useContext(AuthContext);
   const [myBookings, setMyBookings] = useState([]);
   const [loading, setLoading] = useState(true);
-  const token = localStorage.getItem('access_token');
+  const token = localStorage.getItem("access_token");
 
-  useEffect(()=>{
-      document.title="My-bookings | TourTide";
-    },[])
-  
+  useEffect(() => {
+    document.title = "My-bookings | TourTide";
+  }, []);
 
-  if(!token){
-    return <Login></Login>
+  if (!token) {
+    return <Login></Login>;
   }
   // console.log(myBookings)
 
   useEffect(() => {
     if (!user?.email) return <Loader></Loader>;
 
-    fetch(`http://localhost:3000/my-bookings?email=${user.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("access_token")}`,
-      },
-    })
+    fetch(
+      `https://tour-tide-server.vercel.app/my-bookings?email=${user.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      }
+    )
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch bookings");
@@ -65,30 +67,32 @@ const MyBooking = () => {
       {myBookings.length === 0 ? (
         <Fade delay={150} duration={1200} triggerOnce cascade>
           <div className="text-center font-semibold my-10">
-          <h1 className="text-3xl text-[#00224D] font-bold">
-            Welcome to TourTide
-          </h1>
-          <p className="text-xs">
-            Your journey begins here – unforgettable adventures, handpicked for
-            every traveler.
-          </p>
-          <div className="my-30 text-red-500">
-            <h3>You have no tour bookings yet!</h3>
-            <Link
-              to="/all-packages"
-              className="btn btn-soft bg-[#FF204E] hover:bg-[#00224D] hover:text-white my-5"
-            >
-              Go For Booking
-            </Link>
+            <h1 className="text-3xl text-[#00224D] font-bold">
+              Welcome to TourTide
+            </h1>
+            <p className="text-xs">
+              Your journey begins here – unforgettable adventures, handpicked
+              for every traveler.
+            </p>
+            <div className="my-30 text-red-500">
+              <h3>You have no tour bookings yet!</h3>
+              <Link
+                to="/all-packages"
+                className="btn btn-soft bg-[#FF204E] hover:bg-[#00224D] hover:text-white my-5"
+              >
+                Go For Booking
+              </Link>
+            </div>
           </div>
-        </div>
         </Fade>
       ) : (
         <>
           <div className="text-center my-6">
-            <Fade direction="right" delay={100} duration={1000}><h1 className="text-3xl text-[#00224D] font-bold">
-              Welcome to TourTide
-            </h1></Fade>
+            <Fade direction="right" delay={100} duration={1000}>
+              <h1 className="text-3xl text-[#00224D] font-bold">
+                Welcome to TourTide
+              </h1>
+            </Fade>
             <p className="text-xs">
               Your journey begins here – unforgettable adventures, handpicked
               for every traveler.
@@ -96,34 +100,34 @@ const MyBooking = () => {
           </div>
           <Fade delay={200} duration={2000} triggerOnce cascade>
             <div className="overflow-x-auto my-10">
-            <table className="table">
-              {/* head */}
-              {/* <Fade delay={120} duration={1400} triggerOnce cascade> */}
+              <table className="table">
+                {/* head */}
+                {/* <Fade delay={120} duration={1400} triggerOnce cascade> */}
                 <thead>
-                <tr>
-                  <th>Guide Name</th>
-                  <th>Tour Name</th>
-                  <th>Departure location</th>
-                  <th>Destination</th>
-                  <th>Departure Date</th>
-                  <th>Special Note</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              {/* </Fade> */}
-                {/* <Fade direction="left" delay={200} duration={2000} triggerOnce cascade> */}
-              <tbody>
-                  {myBookings.map((bookings) => (
-                  <BookingRows
-                    key={bookings._id}
-                    bookings={bookings}
-                    onStatusUpdate={handleStatusUpdate}
-                  ></BookingRows>
-                ))}
-              </tbody>
+                  <tr>
+                    <th>Guide Name</th>
+                    <th>Tour Name</th>
+                    <th>Departure location</th>
+                    <th>Destination</th>
+                    <th>Departure Date</th>
+                    <th>Special Note</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
                 {/* </Fade> */}
-            </table>
-          </div>
+                {/* <Fade direction="left" delay={200} duration={2000} triggerOnce cascade> */}
+                <tbody>
+                  {myBookings.map((bookings) => (
+                    <BookingRows
+                      key={bookings._id}
+                      bookings={bookings}
+                      onStatusUpdate={handleStatusUpdate}
+                    ></BookingRows>
+                  ))}
+                </tbody>
+                {/* </Fade> */}
+              </table>
+            </div>
           </Fade>
         </>
       )}

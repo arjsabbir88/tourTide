@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 const UpdatePackage = () => {
   const manageData = useLoaderData();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
     bookingCount: { default: bookingDefault },
     contact,
@@ -18,10 +18,10 @@ const UpdatePackage = () => {
     photo,
     price,
     tourName,
-    _id
+    _id,
   } = manageData;
 
-const handleUpdatePackage=(e)=>{
+  const handleUpdatePackage = (e) => {
     e.preventDefault();
     // console.log('clicked')
 
@@ -29,17 +29,18 @@ const handleUpdatePackage=(e)=>{
     const formData = new FormData(form);
     const convertedData = Object.fromEntries(formData.entries());
     // console.log(convertedData);
-    axios.patch(`http://localhost:3000/package/${_id}`,convertedData)
-    .then(result=>{
+    axios
+      .patch(
+        `https://tour-tide-server.vercel.app/package/${_id}`,
+        convertedData
+      )
+      .then((result) => {
         // console.log(result)
-        toast.success('Your Package is updated');
-        navigate('/managePackages')
-
-    })
-    .catch(error=>console.log(error.message))
-}
-
-
+        toast.success("Your Package is updated");
+        navigate("/managePackages");
+      })
+      .catch((error) => console.log(error.message));
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-lg mt-10">

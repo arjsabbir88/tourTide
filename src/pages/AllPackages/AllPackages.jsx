@@ -12,9 +12,9 @@ const AllPackages = () => {
   const [searchPackages, setSearchPackages] = useState([]);
   // console.log(searchPackages);
 
-  useEffect(()=>{
-    document.title="All-packages | TourTide";
-  },[])
+  useEffect(() => {
+    document.title = "All-packages | TourTide";
+  }, []);
 
   if (!allPackages || allPackages.length === 0) {
     return <Loader />;
@@ -26,7 +26,9 @@ const AllPackages = () => {
 
   const handleSearch = () => {
     console.log(searchText);
-    fetch(`http://localhost:3000/all-packages/search?text=${searchText}`)
+    fetch(
+      `https://tour-tide-server.vercel.app/all-packages/search?text=${searchText}`
+    )
       .then((res) => res.json())
       .then((data) => setSearchPackages(data))
       .catch((err) => console.log(err));
@@ -61,34 +63,34 @@ const AllPackages = () => {
           </h1>
           <Fade direction="up" delay={100} duration={1000}>
             <p className="text-xs text-gray-500 animate__fadeInDown">
-            Every great adventure becomes unforgettable when shared with the
-            right people. That’s why we believe the best journeys are the ones
-            taken together <br /> filled with laughter, new friendships, and
-            lasting memories.
-          </p>
+              Every great adventure becomes unforgettable when shared with the
+              right people. That’s why we believe the best journeys are the ones
+              taken together <br /> filled with laughter, new friendships, and
+              lasting memories.
+            </p>
           </Fade>
         </div>
-        {searchPackages.length!==0 ? (
+        {searchPackages.length !== 0 ? (
           <Fade direction="down" delay={100} duration={1500} triggerOnce>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mx-auto">
-            {searchPackages.map((packageData) => (
-              <Packages
-                key={packageData._id}
-                packageData={packageData}
-              ></Packages>
-            ))}
-          </div>
+              {searchPackages.map((packageData) => (
+                <Packages
+                  key={packageData._id}
+                  packageData={packageData}
+                ></Packages>
+              ))}
+            </div>
           </Fade>
         ) : (
           <Fade delay={100} duration={1500} triggerOnce cascade>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mx-auto">
-            {allPackages.map((packageData) => (
-              <Packages
-                key={packageData._id}
-                packageData={packageData}
-              ></Packages>
-            ))}
-          </div>
+              {allPackages.map((packageData) => (
+                <Packages
+                  key={packageData._id}
+                  packageData={packageData}
+                ></Packages>
+              ))}
+            </div>
           </Fade>
         )}
       </div>
