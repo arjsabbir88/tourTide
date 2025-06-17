@@ -10,6 +10,7 @@ import Loader from "../../../Component/Loader/Loader";
 const Login = () => {
   const { user, signIn, loginWithGoogle, loading } = useContext(AuthContext);
   const navigate = useNavigate();
+  const from = location.state?.from?.pathname || '/';
 
 
 //  if(user){
@@ -36,7 +37,7 @@ useEffect(()=>{
     signIn(email, password)
       .then(() => {
         toast.success("User logged in successfully");
-        navigate("/");
+      navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error("Something was wrong. Try again letter");

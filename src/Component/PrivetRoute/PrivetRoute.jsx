@@ -1,13 +1,20 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../AuthProvider/AuthProvider'
-import { Navigate } from 'react-router';
+import { Navigate, useLocation } from 'react-router';
+import Loader from '../Loader/Loader';
 
 const PrivetRoute = ({children}) => {
-    const {user} = useContext(AuthContext);
+    const {user,loading} = useContext(AuthContext);
+    const location = useLocation()
+    const token = localStorage.getItem('access_token')
 
-    if(!user){
-       return <Navigate to='/auth/login'></Navigate>
-    }
+  if(loading){
+    return <Loader></Loader>
+  }
+
+    if (!user || !token) {
+    return <Navigate to="/auth/login" state={{ from: location }} replace />;
+  }
 
  
   return children

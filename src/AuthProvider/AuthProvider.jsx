@@ -49,24 +49,25 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const unSubscribe = onAuthStateChanged(auth, async(currentUser) => {
             setUser(currentUser);
             setLoading(false)
 
             if(currentUser?.email){
-                const userData = {email: currentUser.email}
-                axios.post('http://localhost:3000/jwt',userData)
+
+                const idToken =await currentUser.getIdToken(); 
+                // console.log(idToken)
+
+                const firebaseToken = { access_token: idToken };
+
+                axios.post('http://localhost:3000/jwt',firebaseToken)
                 .then(res=>{
-                    // console.log('token after jwt',res.data);
                     const token = res.data.token;
-                    // console.log(token)
 
-                    // now set token in the localStorage
-
-                    localStorage.setItem('access_token',token)
+                    localStorage.setItem('access_token',idToken)
 
                 }).catch(error=>{
-                    console.log(error)
+                    console.error('Token fetch or API error:', error);
                 })
             }
         })
