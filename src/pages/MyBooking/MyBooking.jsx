@@ -66,7 +66,7 @@ const MyBooking = () => {
     <>
       {myBookings.length === 0 ? (
         <Fade delay={150} duration={1200} triggerOnce cascade>
-          <div className="text-center font-semibold my-10">
+          <div className="text-center font-semibold my-10 min-h-screen">
             <h1 className="text-3xl text-[#00224D] font-bold">
               Welcome to TourTide
             </h1>
@@ -87,7 +87,7 @@ const MyBooking = () => {
         </Fade>
       ) : (
         <>
-          <div className="text-center my-6">
+          <div className="text-center my-6 min-h-screen">
             <Fade direction="right" delay={100} duration={1000}>
               <h1 className="text-3xl text-[#00224D] font-bold">
                 Welcome to TourTide

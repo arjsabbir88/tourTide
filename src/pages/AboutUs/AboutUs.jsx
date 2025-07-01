@@ -7,7 +7,7 @@ const AboutUs = () => {
     },[])
   
   return (
-    <div className="bg-[#f9f9f9] py-10 px-4 md:px-20 min-h-[100vh]">
+    <div className="bg-[#f9f9f9] py-10 px-4 md:px-20 min-h-screen">
       {/* dark:bg-[#1d232a] */}
   <h2 className="text-3xl font-bold text-center text-[#00224D] mb-4">About Us</h2>
   <Fade delay={200} duration={1200} triggerOnce cascade>
