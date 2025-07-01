@@ -26,9 +26,7 @@ const AllPackages = () => {
 
   const handleSearch = () => {
     console.log(searchText);
-    fetch(
-      `https://tour-tide-server.vercel.app/all-packages/search?text=${searchText}`
-    )
+    fetch(`https://tourtide-app.web.app/all-packages/search?text=${searchText}`)
       .then((res) => res.json())
       .then((data) => setSearchPackages(data))
       .catch((err) => console.log(err));
@@ -83,7 +81,7 @@ const AllPackages = () => {
           </Fade>
         ) : (
           <Fade delay={100} duration={1500} triggerOnce cascade>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full mx-auto">
               {allPackages.map((packageData) => (
                 <Packages
                   key={packageData._id}

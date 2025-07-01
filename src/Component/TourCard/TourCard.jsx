@@ -28,7 +28,7 @@ const TourCard = ({ tourCard }) => {
       <img src={photo} alt={tourName} className="w-full h-52 object-cover" />
 
       <div className="p-5 space-y-3">
-        <h2 className="text-xl font-bold text-gray-800">{tourName}</h2>
+        <h2 className="text-xl font-bold text-gray-800 ">{tourName}</h2>
 
         <div className="flex items-center space-x-3">
           <img
@@ -37,7 +37,7 @@ const TourCard = ({ tourCard }) => {
             className="w-10 h-10 rounded-full object-cover border"
           />
           <div>
-            <span className="text-[#00224D] font-medium">{guideName}</span>
+            <span className="text-[#00224D] font-medium ">{guideName}</span>
             <p className="text-xs mt-[-5px]">{email}</p>
           </div>
         </div>

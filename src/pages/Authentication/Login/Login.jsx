@@ -71,11 +71,11 @@ useEffect(()=>{
   }
 
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center gap-25">
+    <div className="flex flex-col md:flex-row justify-center items-center gap-25 min-h-screen">
       <div className="w-full md:w-1/3">
         <Lottie animationData={LottieAnimation} loop={true}></Lottie>
       </div>
-      <div className="container">
+      <div className="container shadow-2xl/30">
         <div className="heading">Sign In</div>
         <form onSubmit={handleLogin} className="form">
           <input

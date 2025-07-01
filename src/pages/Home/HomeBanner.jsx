@@ -51,7 +51,7 @@ const HomePageBanner = () => {
 
 
   return (
-    <div className="w-full h-[40vh]">
+    <div className="w-full h-[60vh]">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         autoplay={{ delay: 3000, disableOnInteraction: false }}

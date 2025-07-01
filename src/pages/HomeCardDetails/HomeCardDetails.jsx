@@ -62,7 +62,7 @@ const HomeCardDetails = () => {
     // console.log(bookingData)
 
     axios
-      .post("https://tour-tide-server.vercel.app/bookings", bookingData)
+      .post("https://tourtide-app.web.app/bookings", bookingData)
       .then((result) => {
         console.log(result);
         if (result.data.insertedId) {
@@ -74,7 +74,7 @@ const HomeCardDetails = () => {
 
           axios
             .patch(
-              `https://tour-tide-server.vercel.app/packages/increment-booking/${_id}`
+              `https://tourtide-app.web.app/packages/increment-booking/${_id}`
             )
             .then((res) => {
               console.log("booking count after update", res.data);
@@ -94,7 +94,7 @@ const HomeCardDetails = () => {
   };
 
   useEffect(() => {
-    fetch(`https://tour-tide-server.vercel.app/bookings-collection/${_id}`)
+    fetch(`https://tourtide-app.web.app/bookings-collection/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data)

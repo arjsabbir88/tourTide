@@ -24,7 +24,7 @@ const ManagePackages = () => {
   useEffect(() => {
     axios
       .get(
-        `https://tour-tide-server.vercel.app/all-packages/manage-package?email=${user?.email}`,
+        `https://tourtide-app.web.app/all-packages/manage-package?email=${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -53,7 +53,7 @@ const ManagePackages = () => {
   return (
     <>
       {manageData.length === 0 ? (
-        <div className="text-center font-semibold my-10">
+        <div className="text-center font-semibold my-10 min-h-screen">
           <h1 className="text-3xl text-[#00224D] font-bold">
             You can manage package
           </h1>
@@ -72,7 +72,7 @@ const ManagePackages = () => {
           </div>
         </div>
       ) : (
-        <div>
+        <div className="min-h-screen">
           <div className="text-center my-6">
             <h1 className="text-3xl text-[#00224D] font-bold">
               You can manage packages

@@ -52,15 +52,11 @@ const AddPackages = () => {
     };
 
     axios
-      .post(
-        "https://tour-tide-server.vercel.app/add-tour-packages",
-        updateData,
-        {
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("access_token")}`,
-          },
-        }
-      )
+      .post("https://tourtide-app.web.app/add-tour-packages", updateData, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      })
       .then((result) => {
         if (result.data.insertedId) {
           toast.success("Your tour packages added successfully");

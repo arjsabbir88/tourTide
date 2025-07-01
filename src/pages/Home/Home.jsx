@@ -6,6 +6,7 @@ import Slider from "../../Component/Slider/Slider";
 import DestinationSlider from "../../Component/Slider/destination";
 import FlightRoutes from "../../Component/FlightDate/FlightRutes";
 import { Bounce, Fade, Slide } from "react-awesome-reveal";
+import TopAirlines from "../../Component/TopAirlines/TopAirlines";
 
 const Home = () => {
 
@@ -43,7 +44,7 @@ const Home = () => {
         {/* </motion.p> */}
         {/* <Slide > */}
           <Fade delay={100} duration={1000} triggerOnce>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
           {tourCardData.map((tourCard) => (
             <TourCard key={tourCard._id} tourCard={tourCard}></TourCard>
@@ -60,6 +61,10 @@ const Home = () => {
             Show All
           </Link>
         </div>
+      </div>
+
+      <div>
+        <TopAirlines></TopAirlines>
       </div>
 
       <div>
