@@ -1,6 +1,6 @@
 # 🌍 TourTide - Tour Package Booking Platform
 
-Live Site 👉 [https://tourtide-app.web.app](https://tourtide-app.web.app)
+Live Site 👉 [https://tour-tide-server.vercel.app](https://tour-tide-server.vercel.app)
 
 ## 📌 Project Overview
 
@@ -13,12 +13,14 @@ The project focuses on usability, responsiveness, and secure implementation of F
 ## 🚀 Features
 
 ### 🔓 Public Access
+
 - Home Page with Hero Banner & Featured Packages
 - All Packages listing
 - Package Details (requires login)
 - About Us Page
 
 ### 🔐 Authentication
+
 - Login with Email/Password
 - Login with Google
 - Registration with validation (Name, Email, Password, Photo URL)
@@ -26,6 +28,7 @@ The project focuses on usability, responsiveness, and secure implementation of F
 - Secure routes for booking & package management
 
 ### 🧑‍💻 Logged-in User Features
+
 - Add New Tour Package
 - Manage My Packages (Update/Delete)
 - Book any Package
@@ -33,6 +36,7 @@ The project focuses on usability, responsiveness, and secure implementation of F
 - View guide info on packages
 
 ### 💼 Admin/Guide Features
+
 - View only own-added packages
 - Update / Delete packages with confirmation
 - Booking count updates automatically using `$inc`
@@ -67,6 +71,7 @@ The project focuses on usability, responsiveness, and secure implementation of F
 ## 🛠️ Tech Stack
 
 ### Frontend:
+
 - React
 - React Router DOM
 - Tailwind CSS
@@ -77,6 +82,7 @@ The project focuses on usability, responsiveness, and secure implementation of F
 - Firebase Auth
 
 ### Backend:
+
 - Express.js
 - Node.js
 - MongoDB (with Mongoose)
@@ -89,6 +95,7 @@ The project focuses on usability, responsiveness, and secure implementation of F
 ## 📂 Database Collections
 
 ### `tourPackages`
+
 ```json
 {
   "tour_name": "Dhaka to Cox’s Bazar Tour",
@@ -106,3 +113,4 @@ The project focuses on usability, responsiveness, and secure implementation of F
   "bookingCount": 3,
   "created_at": "2025-06-24T12:00:00Z"
 }
+```

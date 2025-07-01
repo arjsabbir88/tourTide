@@ -26,7 +26,9 @@ const AllPackages = () => {
 
   const handleSearch = () => {
     console.log(searchText);
-    fetch(`https://tourtide-app.web.app/all-packages/search?text=${searchText}`)
+    fetch(
+      `https://tour-tide-server.vercel.app/all-packages/search?text=${searchText}`
+    )
       .then((res) => res.json())
       .then((data) => setSearchPackages(data))
       .catch((err) => console.log(err));

@@ -30,7 +30,10 @@ const UpdatePackage = () => {
     const convertedData = Object.fromEntries(formData.entries());
     // console.log(convertedData);
     axios
-      .patch(`https://tourtide-app.web.app/package/${_id}`, convertedData)
+      .patch(
+        `https://tour-tide-server.vercel.app/package/${_id}`,
+        convertedData
+      )
       .then((result) => {
         // console.log(result)
         toast.success("Your Package is updated");

@@ -24,7 +24,8 @@ export const Router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () => fetch("https://tourtide-app.web.app/tour-card-data"),
+        loader: () =>
+          fetch("https://tour-tide-server.vercel.app/tour-card-data"),
         hydrateFallbackElement: <Loader></Loader>,
       },
       {
@@ -41,7 +42,7 @@ export const Router = createBrowserRouter([
             throw new Error("No token found");
           }
           const response = await fetch(
-            `https://tourtide-app.web.app/tour-card-data/details/${params.id}`,
+            `https://tour-tide-server.vercel.app/tour-card-data/details/${params.id}`,
             {
               headers: {
                 authorization: `Bearer ${token}`,
@@ -68,7 +69,7 @@ export const Router = createBrowserRouter([
       {
         path: "/all-packages",
         Component: AllPackages,
-        loader: () => fetch("https://tourtide-app.web.app/all-packages"),
+        loader: () => fetch("https://tour-tide-server.vercel.app/all-packages"),
         hydrateFallbackElement: <Loader />,
       },
       {
@@ -86,7 +87,7 @@ export const Router = createBrowserRouter([
         //     throw new Error("No token found");
         //   }
 
-        //   const response = fetch(`https://tourtide-app.web.app/tour-card-data/details/${params.id}`,{
+        //   const response = fetch(`https://tour-tide-server.vercel.app/tour-card-data/details/${params.id}`,{
         //     headers: {
         //         authorization: `Bearer ${token}`,
         //       },
@@ -111,7 +112,7 @@ export const Router = createBrowserRouter([
             throw new Error("No token found");
           }
           const response = await fetch(
-            `https://tourtide-app.web.app/tour-card-data/details/${params.id}`,
+            `https://tour-tide-server.vercel.app/tour-card-data/details/${params.id}`,
             {
               headers: {
                 authorization: `Bearer ${token}`,
@@ -175,7 +176,7 @@ export const Router = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://tourtide-app.web.app/package/${params.id}`),
+          fetch(`https://tour-tide-server.vercel.app/package/${params.id}`),
         hydrateFallbackElement: <Loader></Loader>,
       },
       {
