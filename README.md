@@ -1,6 +1,6 @@
 # 🌍 TourTide - Tour Package Booking Platform
 
-Live Site 👉 [https://tour-tide-server.vercel.app](https://tour-tide-server.vercel.app)
+Live Site 👉 [https://tourtide-app.web.app/](https://tourtide-app.web.app/)
 
 ## 📌 Project Overview
 
