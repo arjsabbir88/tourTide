@@ -1,6 +1,6 @@
 # 🌍 TourTide - Tour Package Booking Platform
 
-Live Site 👉 [https://tourtide-app.web.app/](https://tourtide-app.web.app)
+Live Site 👉 [https://tourtide-app.web.app](https://tourtide-app.web.app)
 
 ## 📌 Project Overview
 
