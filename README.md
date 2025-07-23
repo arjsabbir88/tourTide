@@ -1,6 +1,6 @@
 # 🌍 TourTide - Tour Package Booking Platform
 
-Live Site 👉 [http://localhost:3000](http://localhost:3000)
+Live Site 👉 [https://tour-tide-server.vercel.app](https://tour-tide-server.vercel.app)
 
 ## 📌 Project Overview
 

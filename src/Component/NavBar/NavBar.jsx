@@ -16,7 +16,7 @@ const NavBar = () => {
   // console.log(bookingData)
 
   useEffect(() => {
-    fetch("http://localhost:3000/all-packages")
+    fetch("https://tour-tide-server.vercel.app/all-packages")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data)

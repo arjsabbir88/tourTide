@@ -40,7 +40,7 @@ const ManageRow = ({ data, onDeleteStatus }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:3000/package/${id}`)
+          .delete(`https://tour-tide-server.vercel.app/package/${id}`)
           .then((res) => {
             if (res.data.deletedCount > 0) {
               Swal.fire("Deleted!", "Package has been deleted.", "success");

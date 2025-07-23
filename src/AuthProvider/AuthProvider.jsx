@@ -70,7 +70,7 @@ export const AuthProvider = ({ children }) => {
         const firebaseToken = { access_token: idToken };
 
         axios
-          .post("http://localhost:3000/jwt", firebaseToken)
+          .post("https://tour-tide-server.vercel.app/jwt", firebaseToken)
           .then((res) => {
             const token = res.data.token;
 

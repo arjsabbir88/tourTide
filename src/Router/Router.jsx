@@ -24,7 +24,8 @@ export const Router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () => fetch("http://localhost:3000/tour-card-data"),
+        loader: () =>
+          fetch("https://tour-tide-server.vercel.app/tour-card-data"),
         hydrateFallbackElement: <Loader></Loader>,
       },
       {
@@ -41,7 +42,7 @@ export const Router = createBrowserRouter([
             throw new Error("No token found");
           }
           const response = await fetch(
-            `http://localhost:3000/tour-card-data/details/${params.id}`,
+            `https://tour-tide-server.vercel.app/tour-card-data/details/${params.id}`,
             {
               headers: {
                 authorization: `Bearer ${token}`,
@@ -68,7 +69,7 @@ export const Router = createBrowserRouter([
       {
         path: "/all-packages",
         Component: AllPackages,
-        loader: () => fetch("http://localhost:3000/all-packages"),
+        loader: () => fetch("https://tour-tide-server.vercel.app/all-packages"),
         hydrateFallbackElement: <Loader />,
       },
       {
@@ -86,7 +87,7 @@ export const Router = createBrowserRouter([
         //     throw new Error("No token found");
         //   }
 
-        //   const response = fetch(`http://localhost:3000/tour-card-data/details/${params.id}`,{
+        //   const response = fetch(`https://tour-tide-server.vercel.app/tour-card-data/details/${params.id}`,{
         //     headers: {
         //         authorization: `Bearer ${token}`,
         //       },
@@ -111,7 +112,7 @@ export const Router = createBrowserRouter([
             throw new Error("No token found");
           }
           const response = await fetch(
-            `http://localhost:3000/tour-card-data/details/${params.id}`,
+            `https://tour-tide-server.vercel.app/tour-card-data/details/${params.id}`,
             {
               headers: {
                 authorization: `Bearer ${token}`,
@@ -175,7 +176,7 @@ export const Router = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/package/${params.id}`),
+          fetch(`https://tour-tide-server.vercel.app/package/${params.id}`),
         hydrateFallbackElement: <Loader></Loader>,
       },
       {
