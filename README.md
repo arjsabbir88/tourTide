@@ -1,7 +1,6 @@
 # 🌍 TourTide - Tour Package Booking Platform
 
-Live Site 👉 [https://tour-tide-server.vercel.app](https://tour-tide-server.vercel.app)
-
+Live Site 👉 [[Click here](https://tourtide-app.web.app/))]
 ## 📌 Project Overview
 
 **TourTide** is a full-stack MERN web application that allows users to explore, book, and manage tour packages. This booking management system includes user authentication, real-time tour data handling, booking history, and user-specific tour management functionality.
