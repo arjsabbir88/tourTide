@@ -62,8 +62,8 @@ const DestinationSlider = () => {
       >
         {destinations.map((place, index) => (
           <SwiperSlide key={index}>
-            <div className="relative rounded-xl overflow-hidden shadow-lg">
-              <img src={place.img} alt={place.name} className="h-80 w-full object-cover" />
+            <div className="relative rounded-xl overflow-hidden shadow-lg ">
+              <img src={place.img} alt={place.name} className="h-80 w-full object-cover hover:scale-105 duration-75" />
               <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-4">
                 <h3 className="text-lg font-semibold">{place.name}</h3>
                 <p>{place.hotels} Hotels Available</p>

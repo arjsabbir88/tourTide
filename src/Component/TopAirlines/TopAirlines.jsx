@@ -36,7 +36,7 @@ const TopAirlines = () => {
           {airlines.map((airline, index) => (
             <div
               key={index}
-              className="flex items-center gap-3 p-4 bg-white shadow rounded-lg hover:shadow-md transition"
+              className="flex items-center gap-3 p-4 bg-white shadow rounded-lg hover:shadow-md hover:cursor-pointer transition hover:outline-1 hover:outline-[#FF204E]"
             >
               <img
                 src={airline.logo}

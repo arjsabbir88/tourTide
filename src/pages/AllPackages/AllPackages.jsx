@@ -54,7 +54,7 @@ const AllPackages = () => {
         </div>
       </div>
 
-      <div className="my-10">
+      <div className="my-10 max-w-11/12 mx-auto">
         <div className="text-center my-10">
           <h1 className="text-3xl font-bold text-[#00224D]">
             Choices your package
