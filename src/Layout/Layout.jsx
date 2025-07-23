@@ -10,7 +10,7 @@ const Layout = () => {
         <NavBar/>
 
       </div>
-        <div className='max-w-11/12 mx-auto my-4'>
+        <div className='max-w-full mx-auto my-4'>
         <Outlet/>
         </div>
         <div className='bg-neutral'>

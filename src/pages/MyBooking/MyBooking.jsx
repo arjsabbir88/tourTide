@@ -26,14 +26,11 @@ const MyBooking = () => {
   useEffect(() => {
     if (!user?.email) return <Loader></Loader>;
 
-    fetch(
-      `https://tour-tide-server.vercel.app/my-bookings?email=${user.email}`,
-      {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      }
-    )
+    fetch(`http://localhost:3000/my-bookings?email=${user.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      },
+    })
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch bookings");

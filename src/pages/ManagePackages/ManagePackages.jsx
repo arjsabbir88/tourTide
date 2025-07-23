@@ -24,7 +24,7 @@ const ManagePackages = () => {
   useEffect(() => {
     axios
       .get(
-        `https://tour-tide-server.vercel.app/all-packages/manage-package?email=${user?.email}`,
+        `http://localhost:3000/all-packages/manage-package?email=${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("access_token")}`,

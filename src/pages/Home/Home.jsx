@@ -15,14 +15,14 @@ const Home = () => {
   },[])
 
   const tourCardData = useLoaderData();
-  // console.log(tourCardData);
+  console.log(tourCardData);
 
   return (
     <div className="my-5">
       <div>
         <HomePageBanner />
       </div>
-      <div className="my-10">
+      <div className="my-10 max-w-11/12 mx-auto">
         {/* <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

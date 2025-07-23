@@ -24,7 +24,7 @@ const BookingRows = ({ bookings, onStatusUpdate }) => {
   const handleStatus = () => {
     // console.log('clicked')
     axios
-      .patch(`https://tour-tide-server.vercel.app/bookings/${_id}`)
+      .patch(`http://localhost:3000/bookings/${_id}`)
       .then((result) => {
         // console.log(result)
         if (result.data.modifiedCount > 0) {
