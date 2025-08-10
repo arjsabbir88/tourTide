@@ -193,7 +193,7 @@ const NavBar = () => {
         </div>
         <div className="navbar-end">
           <ul className="flex items-center relative">
-            <ThemeToggle></ThemeToggle>
+            {/* <ThemeToggle></ThemeToggle> */}
 
             {user && (
               <div className="mx-3 relative">

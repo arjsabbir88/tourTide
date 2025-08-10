@@ -7,6 +7,7 @@ import DestinationSlider from "../../Component/Slider/destination";
 import FlightRoutes from "../../Component/FlightDate/FlightRutes";
 import { Bounce, Fade, Slide } from "react-awesome-reveal";
 import TopAirlines from "../../Component/TopAirlines/TopAirlines";
+import { motion } from "framer-motion";
 
 const Home = () => {
 
@@ -17,16 +18,16 @@ const Home = () => {
   const tourCardData = useLoaderData();
 
   return (
-    <div className="my-5">
+    <div className="bg-[#eeebeb]">
       <div>
         <HomePageBanner />
       </div>
       <div className="my-10 max-w-11/12 mx-auto">
-        {/* <motion.p
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="text-[40px] font-bold capitalize"
-        > */}
+        >
           <div className="text-center my-6">
             <Fade direction="left">
               <h1 className="text-3xl text-[#00224D] font-bold">
@@ -40,7 +41,7 @@ const Home = () => {
               </p>
             </Fade>
           </div>
-        {/* </motion.p> */}
+        </motion.div>
         {/* <Slide > */}
           <Fade delay={100} duration={1000} triggerOnce>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">

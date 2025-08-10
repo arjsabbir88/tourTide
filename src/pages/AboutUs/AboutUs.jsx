@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Fade } from "react-awesome-reveal";
+import About from "./About";
 
 const AboutUs = () => {
   useEffect(() => {
@@ -56,6 +57,9 @@ const AboutUs = () => {
             </p>
           </div>
         </Fade>
+      </div>
+      <div className="my-10">
+        <About/>
       </div>
     </div>
   );
