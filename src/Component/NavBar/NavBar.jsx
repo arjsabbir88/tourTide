@@ -153,7 +153,7 @@ const NavBar = () => {
   );
 
   return (
-    <div className="w-full bg-base-200">
+    <div className="w-full backdrop-blur-md text-black shadow-lg">
       <div className="navbar max-w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -214,11 +214,11 @@ const NavBar = () => {
 
                 {/* Dropdown */}
                 {isDropDownOpen && (
-                  <div className="absolute top-12 right-0 bg-white shadow-xl rounded-lg w-40 z-50">
+                  <div className="absolute top-12 right-0 bg-white shadow-xl rounded-lg w-50 z-50">
                     <ul className="text-lg text-gray-700">
                       <div className="px-2 mb-4 text-center">
                         <p>{user.displayName}</p>
-                        <p className="text-xs mt-[-8px]">{user.email}</p>
+                        <p className="text-xs mt-[-5px]">{user.email}</p>
                       </div>
                       {dropDownLinks}
                     </ul>
