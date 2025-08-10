@@ -55,11 +55,12 @@ useEffect(()=>{
     loginWithGoogle()
       .then(() => {
         console.log("login successfully");
-        toast.success("userCreated successfully");
+        toast.success("User logged in successfully");
         navigate("/");
       })
       .catch((error) => {
-        console.log("something is wrong");
+        console.log(error.massage);
+        toast.error(error.massage);
       });
   };
 
