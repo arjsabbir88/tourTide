@@ -23,7 +23,7 @@ export default function About({
     <section className="w-full bg-gradient-to-r from-sky-50 to-white">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          {/* Left: Text */}
+            {/* Left : Text content */}
           <div>
             
 
@@ -53,7 +53,7 @@ export default function About({
                   className="flex items-center gap-3 bg-white/60 backdrop-blur-sm border border-slate-100 rounded-2xl px-4 py-3 shadow-sm"
                 >
                   <span className="p-2 rounded-full bg-indigo-50">
-                    <s.icon className="w-5 h-5 text-indigo-600" />
+                    <s.icon className="w-5 h-5 text-[#FF204E]" />
                   </span>
                   <div>
                     <div className="text-sm text-slate-500">{s.label}</div>
@@ -67,7 +67,7 @@ export default function About({
               whileHover={{ scale: 1.02 }}
               className="mt-8"
             >
-              <button className="inline-flex items-center gap-3 bg-indigo-600 text-white px-5 py-3 rounded-2xl font-medium shadow-md hover:shadow-lg">
+              <button className="inline-flex items-center gap-3 bg-[#FF204E] text-white px-5 py-3 rounded-2xl font-medium shadow-md hover:shadow-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
                   <path fillRule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clipRule="evenodd" />
                 </svg>
@@ -85,7 +85,7 @@ export default function About({
             </motion.div>
           </div>
 
-          {/* Right: Image + card */}
+          {/* Right : Image + card */}
           <div className="relative">
             <motion.div
               initial={{ scale: 0.98, opacity: 0 }}
@@ -124,7 +124,7 @@ export default function About({
         <div className="mt-16 bg-white/50 backdrop-blur-sm border border-slate-100 rounded-2xl p-6 flex flex-col sm:flex-row gap-4 items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="p-3 rounded-lg bg-indigo-50">
-              <Globe className="w-5 h-5 text-indigo-600" />
+              <Globe className="w-5 h-5 text-[#FF204E]" />
             </div>
             <div>
               <div className="text-sm text-slate-500">Our Promise</div>
