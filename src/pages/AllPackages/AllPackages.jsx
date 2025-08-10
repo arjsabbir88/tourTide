@@ -62,7 +62,7 @@ const AllPackages = () => {
             Choices your package
           </h1>
           <Fade direction="up" delay={100} duration={1000}>
-            <p className="text-xs text-gray-500 animate__fadeInDown">
+            <p className="text-lg text-gray-800 animate__fadeInDown">
               Every great adventure becomes unforgettable when shared with the
               right people. That’s why we believe the best journeys are the ones
               taken together <br /> filled with laughter, new friendships, and

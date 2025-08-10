@@ -196,7 +196,10 @@ const NavBar = () => {
             {/* <ThemeToggle></ThemeToggle> */}
 
             {user && (
-              <div className="mx-3 relative">
+              <div className="mx-3 relative flex items-center gap-2">
+                <div>
+                  <h2 className="text-xl">{user?.displayName}</h2>
+                </div>
                 <div
                   className="avatar avatar-online w-10 rounded-full hover:cursor-pointer"
                   onClick={toggleDropdown}
