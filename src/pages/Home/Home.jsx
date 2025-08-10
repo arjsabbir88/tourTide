@@ -15,7 +15,6 @@ const Home = () => {
   },[])
 
   const tourCardData = useLoaderData();
-  console.log(tourCardData);
 
   return (
     <div className="my-5">
